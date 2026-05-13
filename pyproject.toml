@@ -1,0 +1,35 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "lxp-agent"
+version = "0.1.0"
+description = "L.X.P. (Latent Exchange Protocol) and a Groq-backed AI agent"
+readme = "README.md"
+requires-python = ">=3.11"
+license = "Apache-2.0"
+authors = [{ name = "L.X.P. Agent Contributors" }]
+dependencies = [
+  "groq>=0.13.0",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.0.0",
+  "ruff>=0.8.0",
+]
+
+[project.scripts]
+lxp-agent = "lxp_agent.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/lxp_agent"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
